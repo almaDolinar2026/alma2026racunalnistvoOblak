@@ -4,7 +4,7 @@
 
 # ---------- SETTINGS ----------
 $REGION = "eu-central-1"
-$MY_IP = "46.150.49.70/32"
+$MY_IP = "IP"
 $KEY_NAME = "alma-key-4"
 $AMI_ID = "ami-02daa6fa3fe5f3161"
 $INSTANCE_TYPE = "t3.small"
@@ -318,11 +318,3 @@ aws ec2 describe-instances `
   --instance-ids $WEB_INSTANCE $DB1_INSTANCE $DB2_INSTANCE `
   --query "Reservations[*].Instances[*].[Tags[0].Value,InstanceId,PrivateIpAddress,PublicIpAddress,State.Name,SubnetId]" `
   --output table
-
-Write-Host ""
-Write-Host "=== IMPORTANT ==="
-Write-Host "- SSH user for this AMI may be: admin"
-Write-Host "- Web EC2 is in public subnet"
-Write-Host "- DB1 and DB2 are in private subnets"
-Write-Host "- Private subnets now have outbound internet through NAT"
-Write-Host "- MariaDB installation on DB instances should now work"
